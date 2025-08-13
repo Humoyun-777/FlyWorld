@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyWorld Tour</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px 0;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #8BC34A;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 900;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 25%, #8BC34A 50%, #00BCD4 75%, #3F51B5 100%);
+            border-radius: 15px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .logo-text {
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 32px;
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            font-size: 16px;
+            color: #666;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-top: -5px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 195, 74, 0.3);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 3px 10px rgba(139, 195, 74, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            min-width: 120px;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .contact-item:hover .contact-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-item:hover .contact-value {
+            color: white;
+        }
+
+        .navigation {
+            background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navigation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: slideShine 4s infinite;
+        }
+
+        @keyframes slideShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.2);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover::before {
+            transform: translateY(0);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 5px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: block;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-menu li a:hover::before {
+            transform: scale(1);
+        }
+
+        .nav-menu li a:hover {
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transform: translateY(-1px);
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            padding: 10px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-container:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+        }
+
+        .search-icon {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .search-icon:hover {
+            transform: rotate(15deg);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 5px;
+                justify-content: center;
+            }
+
+            .nav-menu li a {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .logo-main {
+                font-size: 24px;
+            }
+
+            .logo-sub {
+                font-size: 14px;
+            }
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(1.1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+            z-index: 1;
+        }
+
+        /* Turkey Slide */
+        .slide.turkey {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><linearGradient id="sunset" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FF6B6B"/><stop offset="50%" style="stop-color:%23FF8E53"/><stop offset="100%" style="stop-color:%234ECDC4"/></linearGradient></defs><rect fill="url(%23sunset)" width="1920" height="1080"/><ellipse cx="400" cy="700" rx="200" ry="300" fill="%23333" opacity="0.8"/><ellipse cx="450" cy="680" rx="150" ry="280" fill="%23444" opacity="0.7"/><polygon points="380,400 390,450 420,440 430,400 440,450 460,440 470,400" fill="%23222"/><circle cx="1600" cy="200" r="150" fill="%23FFE066" opacity="0.6"/><path d="M1200,800 Q1300,700 1400,800 Q1500,700 1600,800 L1920,800 L1920,1080 L0,1080 L0,800 Z" fill="%23FF8E53" opacity="0.3"/></svg>');
+        }
+
+        /* Dubai Slide */
+        .slide.dubai {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><linearGradient id="dubai-sunset" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FF9500"/><stop offset="50%" style="stop-color:%23FFB347"/><stop offset="100%" style="stop-color:%234A90E2"/></linearGradient></defs><rect fill="url(%23dubai-sunset)" width="1920" height="1080"/><rect x="200" y="300" width="60" height="400" fill="%23333" opacity="0.9"/><rect x="300" y="200" width="80" height="500" fill="%23444" opacity="0.9"/><rect x="420" y="150" width="100" height="550" fill="%23333" opacity="0.9"/><rect x="560" y="100" width="120" height="600" fill="%23444" opacity="0.9"/><rect x="720" y="50" width="150" height="650" fill="%23333" opacity="0.9"/><rect x="910" y="180" width="90" height="520" fill="%23444" opacity="0.9"/><rect x="1040" y="250" width="70" height="450" fill="%23333" opacity="0.9"/><circle cx="1600" cy="200" r="120" fill="%23FFE066" opacity="0.7"/></svg>');
+        }
+
+        /* Egypt Slide */
+        .slide.egypt {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><linearGradient id="desert" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23D2B48C"/><stop offset="50%" style="stop-color:%23DEB887"/><stop offset="100%" style="stop-color:%23F4A460"/></linearGradient></defs><rect fill="url(%23desert)" width="1920" height="1080"/><polygon points="400,500 500,300 600,500" fill="%23CD853F" opacity="0.9"/><polygon points="700,450 800,250 900,450" fill="%23D2B48C" opacity="0.9"/><polygon points="1100,480 1200,280 1300,480" fill="%23DEB887" opacity="0.9"/><ellipse cx="200" cy="400" rx="80" ry="120" fill="%238B4513" opacity="0.6"/><circle cx="1700" cy="150" r="100" fill="%23FFD700" opacity="0.8"/><path d="M0,800 Q200,750 400,800 Q600,750 800,800 Q1000,750 1200,800 Q1400,750 1600,800 Q1800,750 1920,800 L1920,1080 L0,1080 Z" fill="%23F4A460"/></svg>');
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .destination-badge {
+            background: rgba(63, 81, 181, 0.9);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: inline-block;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 1s ease-out 0.5s both;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .destination-title {
+            font-size: 6rem;
+            font-weight: 900;
+            color: #8BC34A;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease-out 0.8s both;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(139, 195, 74, 0.4);
+            animation: fadeInUp 1s ease-out 1.1s both;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(139, 195, 74, 0.6);
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 195, 74, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .nav-arrow:hover {
+            background: rgba(139, 195, 74, 1);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .nav-arrow.prev {
+            left: 40px;
+        }
+
+        .nav-arrow.next {
+            right: 40px;
+        }
+
+        .slide-indicators {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+
+        .indicator.active {
+            background: #8BC34A;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(139, 195, 74, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 80%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        @media (max-width: 768px) {
+            .destination-title {
+                font-size: 3.5rem;
+            }
+            
+            .destination-badge {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+            
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .nav-arrow.prev {
+                left: 20px;
+            }
+            
+            .nav-arrow.next {
+                right: 20px;
+            }
+        }
+
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 100px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .title .highlight {
+            color: #8BC34A;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 15px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            height: 2px;
+            width: 60px;
+            background-color: #333;
+        }
+
+        .divider-icon {
+            width: 12px;
+            height: 12px;
+            background-color: #8BC34A;
+            transform: rotate(45deg);
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px dashed #ddd;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #8BC34A;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #8BC34A;
+            border-radius: 50%;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .service-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Icons */
+        .shield-icon {
+            color: white;
+            font-size: 24px;
+        }
+
+        .team-icon {
+            display: flex;
+            gap: 3px;
+        }
+
+        .team-icon::before,
+        .team-icon::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .team-icon::before {
+            width: 16px;
+            height: 16px;
+            margin-right: 2px;
+        }
+
+        .plane-icon {
+            color: white;
+            font-size: 24px;
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 768px) {
+            .destination-title {
+                font-size: 3.5rem;
+            }
+            
+            .destination-badge {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+            
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .nav-arrow.prev {
+                left: 20px;
+            }
+            
+            .nav-arrow.next {
+                right: 20px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="margin-bottom: 0;" class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img style="width: 150px; height: 150px;" src="image.png" alt="">
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <img style="width: 30px; height: 30px;" src="image copy.png" alt="">
+                    <div class="contact-details">
+                        <div class="contact-label">Telefon</div>
+                        <div class="contact-value">(88) 008-8449</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                 <img style="width: 30px; height: 30px;" src="image copy 4.png" alt="">
+                    <div class="contact-details">
+                        <div class="contact-label">Telefon</div>
+                        <div class="contact-value">(88) 008-8449</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                  <img style="width: 30px; height: 30px;"  src="image copy 3.png" alt="">
+                    <div class="contact-details">
+                        <div class="contact-label">Ish vaqti</div>
+                        <div class="contact-value">10:00-20:00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav style="margin-top: 0;" class="navigation">
+        <div style="margin-top: 0;" class="nav-content">
+            <div class="social-links">
+                <a style="margin-top: 5px;"  href="https://t.me/Flyworldtour" class="social-link" title="Telegram"><img style="width: 30px; height: 30px;" src="image copy 2.png" alt=""></a>
+                <a style="margin-top: 5px;"  href="https://www.instagram.com/flyworld_tour_?igsh=MWJxcXlxN2Jwem9pMA==" class="social-link" title="Instagram"><img style="width: 60px; height: 40px;"  src="image copy 6.png" alt=""></a>
+                <a style="margin-top: 5px;"  href="#" class="social-link" title="YouTube"><img style="width: 30px; height: 20px;" src="image copy 7.png" alt=""></a>
+                <a style="margin-top: 5px;"  href="https://www.facebook.com/share/14Li17CLpyg/" class="social-link" title="Facebook"><img style="width: 60px; height: 40px;"  src="image copy 5.png" alt=""></a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#">Asosiy</a></li>
+                <li><a href="#">Biz haqimizda</a></li>
+                <li><a href="#">Umruli turlar</a></li>
+                <li><a href="#">Turlar</a></li>
+                <li><a href="#">Umra va Haj</a></li>
+                <li><a href="#">Aloqa</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="slider-container">
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+
+        <!-- Turkey Slide -->
+        <div style="background-image: url(image\ copy\ 13.png); " class="slide turkey active">
+            <div class="slide-content">
+                <div class="destination-badge">
+                    Toros tog'lari bilan o'ralgan Turkiya Riviera Antalyaning eng go'zal shahri!
+                </div>
+                <h1 class="destination-title">Turkiya</h1>
+                <button class="cta-button">
+                    <a style="color: white; list-style: none;" href="">Batafsil →</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dubai Slide -->
+        <div style="background-image: url(image\ copy\ 16.png);" class="slide dubai">
+            <div class="slide-content">
+                <div class="destination-badge">
+                    Dubay Birlashgan Arab Amirliklarining eng yirik shahri
+                </div>
+                <h1 class="destination-title">Dubai</h1>
+                <button class="cta-button">
+                    <a style="color: white; list-style: none;" href="">Batafsil →</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Egypt Slide -->
+        <div style="background-image: url(image\ copy\ 11.png);" class="slide egypt">
+            <div class="slide-content">
+                <div class="destination-badge">
+                    Qilaviy va qadimiy havoda dam olish uchun eng yaxshi tanlov
+                </div>
+                <h1 class="destination-title">Misr</h1>
+                <button class="cta-button">
+                    <a style="color: white; list-style: none;" href="">Batafsil →</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <div class="nav-arrow prev">‹</div>
+        <div class="nav-arrow next">›</div>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h1 style="text-align: center;" class="title">Bizning <span class="highlight">Xizmatlar</span></h1>
+                <div class="divider">
+                    <div class="divider-icon"></div>
+                </div>
+                <p style="text-align: center;" class="subtitle">Nega sayyohlar bizni tanlaydi</p>
+            </div>
+
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <div class="shield-icon"><img  style="width: 70px; height: 40px; margin-top: 15px;" src="image copy 14.png" alt=""></div>
+                    </div>
+                    <h3 class="service-title">BIZ BILAN XAVFSIZ SAYOHAT QILING!</h3>
+                    <p class="service-description">Ta'tilnizga ishonch hosil qilishni xohlaysizmi? Unda biz bilan sayohat qiling</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <div class="team-ion"><img style="width: 30px;" src="image copy 15.png" alt=""></div>
+                    </div>
+                    <h3 class="service-title">BIZ BILAN OSON</h3>
+                    <p class="service-description">Va nihoyat - ollangiz va do'stlaringizga ko'proq vaqt ajrating, biz barcha ishlar bilan shug'ullanamiz!</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <div class="plane-icon">✈️</div>
+                    </div>
+                    <h3 class="service-title">HAVO VA TEMIR YO'L CHIPTALARINI BRONLASH</h3>
+                    <p class="service-description">Har qanday yo'nalishda qulay takliflar, Maslahat va qo'llab-quvvatlash</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<script>
+      class DestinationSlider {
+            constructor() {
+                this.currentSlide = 0;
+                this.slides = document.querySelectorAll('.slide');
+                this.indicators = document.querySelectorAll('.indicator');
+                this.prevBtn = document.querySelector('.nav-arrow.prev');
+                this.nextBtn = document.querySelector('.nav-arrow.next');
+                this.autoPlayInterval = null;
+                
+                this.init();
+                this.startAutoPlay();
+            }
+
+            init() {
+                // Navigation arrows
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                // Indicators
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                });
+                
+                // Touch/swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                document.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                document.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe();
+                });
+                
+                this.handleSwipe = () => {
+                    const swipeThreshold = 50;
+                    const diff = touchStartX - touchEndX;
+                    
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
+                        }
+                    }
+                };
+                
+                // Pause autoplay on hover
+                const container = document.querySelector('.slider-container');
+                container.addEventListener('mouseenter', () => this.stopAutoPlay());
+                container.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+
+            goToSlide(index) {
+                // Remove active class from all slides and indicators
+                this.slides.forEach(slide => slide.classList.remove('active'));
+                this.indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Add active class to current slide and indicator
+                this.slides[index].classList.add('active');
+                this.indicators[index].classList.add('active');
+                
+                this.currentSlide = index;
+                this.resetAnimations();
+            }
+
+            nextSlide() {
+                const nextIndex = (this.currentSlide + 1) % this.slides.length;
+                this.goToSlide(nextIndex);
+            }
+
+            prevSlide() {
+                const prevIndex = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+                this.goToSlide(prevIndex);
+            }
+
+            resetAnimations() {
+                const activeSlide = this.slides[this.currentSlide];
+                const elements = activeSlide.querySelectorAll('.destination-badge, .destination-title, .cta-button');
+                
+                elements.forEach(element => {
+                    element.style.animation = 'none';
+                    element.offsetHeight; // Trigger reflow
+                    element.style.animation = null;
+                });
+            }
+
+            startAutoPlay() {
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 6000); // Change slide every 6 seconds
+            }
+
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+        }
+
+        // Initialize slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new DestinationSlider();
+        });
+
+        // Add button click effects
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('cta-button')) {
+                const button = e.target;
+                button.style.transform = 'translateY(-3px) scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = 'translateY(-3px) scale(1.05)';
+                }, 150);
+            }
+        });
+</script>
+</body>
+</html>
