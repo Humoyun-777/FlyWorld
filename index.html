@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="image.png">
     <title>FlyWorld Tour</title>
     <style>
         * {
@@ -832,7 +833,7 @@
     </style>
 </head>
 <body>
-    <header style="margin-bottom: 0;" class="header">
+    <header style="margin-bottom: 0; background-color: #00BCD4;" class="header">
         <div class="header-content">
             <div class="logo">
                 <img style="width: 150px; height: 150px;" src="image.png" alt="">
@@ -875,11 +876,12 @@
             
             <ul class="nav-menu">
                 <li><a href="#">Asosiy</a></li>
-                <li><a href="#">Biz haqimizda</a></li>
-                <li><a href="#">Umruli turlar</a></li>
-                <li><a href="#">Turlar</a></li>
-                <li><a href="#">Umra va Haj</a></li>
-                <li><a href="#">Aloqa</a></li>
+                <li><a href="k2.html">Biz haqimizda</a></li>
+                <li><a href="k3.html">Joylashuv</a></li>
+                <li><a href="k4.html">Aloqa</a></li>
+                <li><a href="k5.html">Umruli turlar</a></li>
+                <li><a href="k6.html">Turlar</a></li>
+                <li><a href="k7.html">Umra va Haj</a></li>
             </ul>
         </div>
     </nav>
@@ -944,7 +946,7 @@
     </div>
 
     <!-- Services Section -->
-    <section class="services-section">
+    <section style="background-color: #00BCD4;" class="services-section">
         <div class="container">
             <div class="section-header">
                 <h1 style="text-align: center;" class="title">Bizning <span class="highlight">Xizmatlar</span></h1>
@@ -981,7 +983,38 @@
             </div>
         </div>
     </section>
-    
+    <section style=" background-color: #00BCD4; margin-bottom: 0;" class="contact" id="contact">
+        <div class="container">
+            <br>
+            <div class="contact-content">
+                <h2 style="text-align: center;" class="section-title fade-in">Ko'proq informatsiya uchun</h2>
+                <br>
+                <div style="justify-content: space-between;" class="contact-info">
+                    <div class="contact-item fade-in" onclick="window.open('tel:+998909088449', '_self')">
+                        <i class="fas fa-phone"></i>
+                        <span>+998 90 908 8449</span>
+                    </div>
+                    <div class="contact-item fade-in" onclick="window.open('tel:+998903186583', '_self')">
+                        <i class="fas fa-phone"></i>
+                        <span>+998 90 318 6583</span>
+                    </div>
+                    <div class="contact-item fade-in" onclick="window.open('tel:+998909494404', '_self')">
+                        <i class="fas fa-phone"></i>
+                        <span>+998 90 949 4404</span>
+                    </div>
+                </div>
+                <br>
+                       <div style="justify-content: space-between;" class="social-links">
+                            <a style="margin-top: 5px;"  href="https://t.me/Flyworldtour" class="social-link" title="Telegram"><img style="width: 30px; height: 30px;" src="image copy 2.png" alt=""></a>
+                            <a style="margin-top: 5px;"  href="https://www.instagram.com/flyworld_tour_?igsh=MWJxcXlxN2Jwem9pMA==" class="social-link" title="Instagram"><img style="width: 60px; height: 40px;"  src="image copy 6.png" alt=""></a>
+                            <a style="margin-top: 5px;"  href="#" class="social-link" title="YouTube"><img style="width: 30px; height: 20px;" src="image copy 7.png" alt=""></a>
+                            <a style="margin-top: 5px;"  href="https://www.facebook.com/share/14Li17CLpyg/" class="social-link" title="Facebook"><img style="width: 60px; height: 40px;"  src="image copy 5.png" alt=""></a>
+                        </div>
+                    <br>    
+                </div>
+            </div>
+        </div>
+    </section>
 <script>
       class DestinationSlider {
             constructor() {
@@ -1107,6 +1140,141 @@
                 }, 150);
             }
         });
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Collection view function
+        function viewCollection(category) {
+            // Add loading animation
+            event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Yuklanmoqda...';
+            
+            setTimeout(() => {
+                switch(category) {
+                    case 'orindiglar':
+                        alert('O\'rindig\'lar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'arginchoqlar':
+                        alert('Arg\'inchoqlar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'sorilar':
+                        alert('So\'rilar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'ustunlar':
+                        alert('Ustunlar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'panjaralar':
+                        alert('Panjaralar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'shiponlar':
+                        alert('Shiponlar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'chiroqlar':
+                        alert('Chiroqlar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'bog_orindiglar':
+                        alert('Bog\' o\'rindig\'lar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'chiqindi_idishlar':
+                        alert('Chiqindi idishlar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'stol_stullar':
+                        alert('Stol va stullar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'temir_darvozalar':
+                        alert('Temir darvozalar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'balkon_panjaralari':
+                        alert('Balkon panjaralari kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'dekorativ_elementlar':
+                        alert('Dekorativ elementlar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'temir_zinapoyalar':
+                        alert('Temir zinapoyalar kolleksiyasi ochilmoqda...');
+                        break;
+                    case 'maxsus_buyurtmalar':
+                        alert('Maxsus buyurtmalar kolleksiyasi ochilmoqda...');
+                        break;
+                    default:
+                        alert('Kolleksiya topilmadi!');
+                }
+                
+                // Reset button
+                event.target.innerHTML = '<i class="fas fa-eye"></i> Jamg\'armani ko\'rish';
+            }, 1500);
+        }
+
+        // Add smooth hover effects
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click ripple effect to buttons
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+                
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-element');
+            
+            parallax.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+         // Mobile menu toggle functionality
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Action button click handlers
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const title = this.getAttribute('title');
+                console.log(`${title} bosildi`);
+                // Bu yerda har bir tugma uchun funksionallik qo'shishingiz mumkin
+            });
+        });
+        
 </script>
 </body>
 </html>
