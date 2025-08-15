@@ -249,6 +249,240 @@
             transition: all 0.3s ease;
             padding: 10px;
         }
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .city-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .city-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .city-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.3), transparent);
+        }
+
+        .city-info {
+            padding: 25px;
+        }
+
+        .city-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .city-country {
+            color: #ffeb3b;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .city-description {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .visit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .visit-btn:hover {
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .attractions {
+            margin-top: 20px;
+        }
+
+        .attraction-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ffeb3b;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
     </style>
 </body>
   <!-- Main Navigation Header -->
@@ -273,17 +507,195 @@
                 <li class="nav-item">
                     <a style="margin-top: 10px;" href="k4.html" class="nav-link">ALOQA</a>
                 </li>
-                <li class="nav-item">
-                    <a style="margin-top: 10px;" href="k5.html" class="nav-link">UMURLI TURLAR</a>
-                </li>
-                <li class="nav-item">
-                    <a  style="margin-top: 10px;" href="k7.html" class="nav-link">UMRA VA HAJ</a>
-                </li>
             </ul>
     
         </nav>  
     </header>
+    <header style="margin-top: 130px;" >
+        <div class="container">
+            <h1>🌍 Dunyoning Eng Go'zal Shaharlari</h1>
+            <p class="subtitle">Sayohat qiling va dunyoni kashf eting!</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="cities-grid" id="citiesGrid">
+            <!-- Cities will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="cityModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script>
+        const cities = [
+            {
+                name: "Parij",
+                country: "Fransiya",
+                image: "image copy 18.png",
+                description: "Sevgi va romantika shahari, Eyfel minorasi va Luv muzeyining vatani.",
+                attractions: [
+                    "🗼 Eyfel minorasi - Parijning ramzi",
+                    "🎨 Luv muzeyi - Dunyoning eng yirik san'at muzeyi",
+                    "⛪ Notre Dame sobori - Go'zal gotika arxitekturasi",
+                    "🌳 Elizey dahlizi - Mashhur ko'cha va do'konlar"
+                ]
+            },
+            {
+                name: "Tokyo",
+                country: "Yaponiya",
+                image: "image copy 19.png",
+                description: "Zamonaviylik va an'ananing uyg'unlashgan shahri, texnologiya va madaniyat markazi.",
+                attractions: [
+                    "🌸 Senso-ji ma'badi - Eng qadimiy buddist ma'badi",
+                    "🗼 Tokyo Skytree - 634 metrlik minora",
+                    "🐟 Tsukiji baliq bozori - Dunyodagi eng yirik baliq bozori",
+                    "🌳 Shibuya crossing - Dunyodagi eng gavjum o'tish joyi"
+                ]
+            },
+            {
+                name: "New York",
+                country: "AQSH",
+                image: "image copy 20.png",
+                description: "Uyqulamagan shahar, Broadway teatrlari va Empire State Building bilan mashhur.",
+                attractions: [
+                    "🗽 Ozodlik haykali - Amerikaning ramzi",
+                    "🏢 Empire State Building - Art Deco uslubidagi binolar",
+                    "🎭 Broadway - Dunyoning teatr markazi",
+                    "🌳 Central Park - Shahar markazidagi yashil hudud"
+                ]
+            },
+            {
+                name: "London",
+                country: "Buyuk Britaniya",
+                image: "image copy 21.png",
+                description: "Tarixiy shahar, Big Ben va Buckingham saroyi bilan tanilgan.",
+                attractions: [
+                    "🕐 Big Ben - Londonning ramziy soat minorasi",
+                    "🏰 Buckingham saroyi - Qirollik qarorgohi",
+                    "🌁 Tower Bridge - Mashhur ko'prik",
+                    "🎡 London Eye - Katta aylanish g'ildiragi"
+                ]
+            },
+            {
+                name: "Dubai",
+                country: "BAA",
+                image: "image copy 22.png",
+                description: "Zamonaviy me'morchilik mo'jizasi, dunyodagi eng baland bino Burj Khalifa joylashgan.",
+                attractions: [
+                    "🏗️ Burj Khalifa - Dunyodagi eng baland bino (828m)",
+                    "🏝️ Palm Jumeirah - Sun'iy orol",
+                    "🛍️ Dubai Mall - Dunyodagi eng yirik savdo markazi",
+                    "⛲ Dubai Fountain - Musiqali favvoralar shousi"
+                ]
+            },
+            {
+                name: "Istanbul",
+                country: "Turkiya",
+                image: "image copy 23.png",
+                description: "Ikki qit'ani birlashtiruvchi shahar, boy tarix va madaniyatga ega.",
+                attractions: [
+                    "🕌 Ayasofya - Tarixiy me'morchilik yodgorligi",
+                    "🕌 Ko'k masjid - Sultan Ahmet masjidi",
+                    "🏰 Topkapi saroyi - Osmanlı sultanlari qarorgohi",
+                    "🛍️ Bozor-i Kabir - Eng qadimiy yopiq bozor"
+                ]
+            },
+            {
+                name: "Beijing",
+                country: "Xitoy",
+                image: "image copy 24.png",
+                description: "Pekin - Xitoyning poytaxti, yirik transport markazi va madaniyat, siyosat va ta'limning global markazi.",
+                attractions: [
+                    "🕌 Buyuk Xitoy devori - Tarixiy me'morchilik yodgorligi",
+                    "🕌 Beijing  - Xitoyning mashhur poytaxti",
+                ]
+            },
+            {
+                name: "Sharm al-Shayx",
+                country: "Misir",
+                image: "image copy 25.png",
+                description: "Sharm al-Shayx Misrning mashhur kurort shahri bo'lib, Sinay yarim orolining janubiy uchida joylashgan bo'lib, o'zining go'zal plyajlari, jonli dengiz hayoti va hashamatli kurortlari bilan mashhur.",
+                attractions: [
+                    "🕌 Sohillari - Dam olish uchun eng zo'r tanlov",
+
+                ]
+            },
+            {
+                name: "Samarqand",
+                country: "O'zbekiston",
+                image: "image copy 26.png",
+                description: "Samarqand Oʻzbekistonning qadimiy shahri boʻlib, oʻzining boy tarixi va YUNESKOning Butunjahon merosi obʼyektlari bilan mashhur.",
+                attractions: [
+                    "🕌 Registon - Eng qadimiy va hotiraga boy shahar",
+
+                ]
+            }
+        ];
+
+        function createCityCard(city, index) {
+            return `
+                <div class="city-card" onclick="openModal(${index})">
+                    <div class="city-image" style="background-image: url('${city.image}')"></div>
+                    <div class="city-info">
+                        <h3 class="city-name">${city.name}</h3>
+                        <p class="city-country">${city.country}</p>
+                        <p class="city-description">${city.description}</p>
+                        <button class="visit-btn">Batafsil ma'lumot</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCities() {
+            const citiesGrid = document.getElementById('citiesGrid');
+            citiesGrid.innerHTML = cities.map((city, index) => createCityCard(city, index)).join('');
+        }
+
+        function openModal(cityIndex) {
+            const city = cities[cityIndex];
+            const modal = document.getElementById('cityModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2>${city.name}, ${city.country}</h2>
+                <div class="modal-image" style="background-image: url('${city.image}')"></div>
+                <p>${city.description}</p>
+                <div class="attractions">
+                    <h3>Asosiy diqqatga sazovor joylar:</h3>
+                    ${city.attractions.map(attraction => 
+                        `<div class="attraction-item">${attraction}</div>`
+                    ).join('')}
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCities();
+            
+            const modal = document.getElementById('cityModal');
+            const closeBtn = document.querySelector('.close');
+            
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
          // Mobile menu toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
@@ -295,4 +707,5 @@
             });
         });
     </script>
+</body>
 </html>
