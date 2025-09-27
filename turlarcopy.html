@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image.png">
+    <title>Туры | FlyWorld</title>
+</head>
+<body>
+    <style>
+        .phone-select:focus + .dropdown-arrow {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        /* Custom option styling for modern browsers */
+        .phone-select option {
+            padding: 10px;
+            background: white;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .phone-select option:hover {
+            background: #f8f9fa;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .phone-select {
+                min-width: 180px;
+                font-size: 13px;
+                padding: 10px 40px 10px 35px;
+            }
+        }
+        .phone-selector {
+            position: relative;
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .phone-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px 45px 12px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2980b9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .phone-select:hover {
+            border-color: #FC004A;
+            box-shadow: 0 4px 20px rgba(252, 0, 74, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .phone-select:focus {
+            border-color: #FC004A;
+            box-shadow: 0 0 0 3px rgba(252, 0, 74, 0.1);
+        }
+
+        .phone-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FC004A;
+            font-size: 16px;
+            pointer-events: none;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background:#2980b9 ;
+                flex-direction: column;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                border-right: none;
+                border-bottom: 1px solid  #2980b9;
+                padding: 15px 24px;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero {
+                margin-top: 140px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            flex: 1;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 20px 24px;
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-right: 1px solid  #2980b9;
+        }
+
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .action-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .action-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Hover effects */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background:red;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        .main-header {
+            background-color: #2980b9;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 10px;
+        }
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .city-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .city-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .city-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.3), transparent);
+        }
+
+        .city-info {
+            padding: 25px;
+        }
+
+        .city-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .city-country {
+            color: #ffeb3b;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .city-description {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .visit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .visit-btn:hover {
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .attractions {
+            margin-top: 20px;
+        }
+
+        .attraction-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ffeb3b;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</body>
+  <!-- Main Navigation Header -->
+    <header style="margin-bottom: 0 ;" class="main-header">
+        <nav class="nav-container">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <div class="main-logo">
+                <img style="height: 70px; width: 70px;" src="image.png" alt="Logo">
+            </div>
+            
+            <ul style="gap: 10px;" class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a style="margin-top: 10px;" href="k1copy.html" class="nav-link">ГЛАВНАЯ</a>
+                </li>
+                <li  class="nav-item">
+                    <a style="margin-top: 10px;" href="k2copy.html" class="nav-link">ИНФОРМАЦИЯ</a>
+                </li>
+                <li class="nav-item">
+                    <a style="margin-top: 10px;" href="k3copy.html" class="nav-link">РАСПОЛОЖЕНИЕ</a>
+                </li>
+                <li class="nav-item">
+                    <a style="margin-top: 10px;" href="k4copy.html" class="nav-link">КОНТАКТЫ</a>
+                </li>
+            </ul>
+    
+        </nav>  
+    </header>
+    <header style="margin-top: 130px;" >
+        <div class="container">
+            <h1>🌍 Самые красивые города мира</h1>
+            <p class="subtitle">Путешествуйте и открывайте мир!</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="cities-grid" id="citiesGrid">
+            <!-- Cities will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="cityModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cities = [
+            {
+                name: "Париж",
+                country: "Франция",
+                image: "image copy 18.png",
+                description: "Город любви и романтики, родина Эйфелевой башни и Лувра.",
+                attractions: [
+                    "🗼 Эйфелева башня - символ Парижа",
+                    "🎨 Лувр - крупнейший художественный музей мира",
+                    "⛪ Собор Нотр-Дам - красивая готическая архитектура",
+                    "🌳 Елисейские поля - знаменитая улица и магазины"
+                ]
+            },
+            {
+                name: "Токио",
+                country: "Япония",
+                image: "image copy 19.png",
+                description: "Город, где сочетаются современность и традиции, центр технологий и культуры.",
+                attractions: [
+                    "🌸 Храм Сэнсо-дзи - самый древний буддийский храм",
+                    "🗼 Токийское небесное дерево - башня высотой 634 метра",
+                    "🐟 Рынок Цукидзи - крупнейший рыбный рынок в мире",
+                    "🌳 Перекресток Сибуя - самый оживленный перекресток в мире"
+                ]
+            },
+            {
+                name: "Нью-Йорк",
+                country: "США",
+                image: "image copy 20.png",
+                description: "Город, который никогда не спит, знаменит театрами Бродвея и Эмпайр-стейт-билдингом.",
+                attractions: [
+                    "🗽 Статуя Свободы - символ Америки",
+                    "🏢 Эмпайр-стейт-билдинг - здания в стиле ар-деко",
+                    "🎭 Бродвей - театральный центр мира",
+                    "🌳 Центральный парк - зеленый район в центре города"
+                ]
+            },
+            {
+                name: "Лондон",
+                country: "Великобритания",
+                image: "image copy 21.png",
+                description: "Исторический город, известный Биг-Беном и Букингемским дворцом.",
+                attractions: [
+                    "🕐 Биг-Бен - символическая часовая башня Лондона",
+                    "🏰 Букингемский дворец - королевская резиденция",
+                    "🌁 Тауэрский мост - знаменитый мост",
+                    "🎡 Лондонский глаз - большое колесо обозрения"
+                ]
+            },
+            {
+                name: "Дубай",
+                country: "ОАЭ",
+                image: "image copy 22.png",
+                description: "Чудо современной архитектуры, где находится самое высокое здание в мире Бурдж-Халифа.",
+                attractions: [
+                    "🏗️ Бурдж-Халифа - самое высокое здание в мире (828м)",
+                    "🏝️ Пальма Джумейра - искусственный остров",
+                    "🛍️ Дубай Молл - крупнейший торговый центр в мире",
+                    "⛲ Дубайский фонтан - музыкальное шоу фонтанов"
+                ]
+            },
+            {
+                name: "Стамбул",
+                country: "Турция",
+                image: "image copy 23.png",
+                description: "Город, объединяющий два континента, с богатой историей и культурой.",
+                attractions: [
+                    "🕌 Айя-София - исторический архитектурный памятник",
+                    "🕌 Голубая мечеть - мечеть Султана Ахмета",
+                    "🏰 Дворец Топкапы - резиденция османских султанов",
+                    "🛍️ Большой базар - самый древний крытый базар"
+                ]
+            },
+            {
+                name: "Пекин",
+                country: "Китай",
+                image: "image copy 24.png",
+                description: "Пекин - столица Китая, крупный транспортный центр и глобальный центр культуры, политики и образования.",
+                attractions: [
+                    "🕌 Великая Китайская стена - исторический архитектурный памятник",
+                    "🕌 Пекин - знаменитая столица Китая",
+                ]
+            },
+            {
+                name: "Шарм-эль-Шейх",
+                country: "Египет",
+                image: "image copy 25.png",
+                description: "Шарм-эль-Шейх — популярный курортный город в Египте, расположенный на южной оконечности Синайского полуострова, известный своими прекрасными пляжами, яркой морской жизнью и роскошными курортами.",
+                attractions: [
+                    "🕌 Пляжи — идеальный выбор для отпуска",
+
+                ]
+            },
+            {
+                name: "Самарканд",
+                country: "Узбекистан",
+                image: "image copy 26.png",
+                description: "Самарканд — древний город в Узбекистане, известный своей богатой историей и объектами Всемирного наследия ЮНЕСКО.",
+                attractions: [
+                    "🕌 Регистан - древнейший и памятный город",
+
+                ]
+            }
+        ];
+
+        function createCityCard(city, index) {
+            return `
+                <div class="city-card" onclick="openModal(${index})">
+                    <div class="city-image" style="background-image: url('${city.image}')"></div>
+                    <div class="city-info">
+                        <h3 class="city-name">${city.name}</h3>
+                        <p class="city-country">${city.country}</p>
+                        <p class="city-description">${city.description}</p>
+                        <button class="visit-btn">Batafsil ma'lumot</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCities() {
+            const citiesGrid = document.getElementById('citiesGrid');
+            citiesGrid.innerHTML = cities.map((city, index) => createCityCard(city, index)).join('');
+        }
+
+        function openModal(cityIndex) {
+            const city = cities[cityIndex];
+            const modal = document.getElementById('cityModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2>${city.name}, ${city.country}</h2>
+                <div class="modal-image" style="background-image: url('${city.image}')"></div>
+                <p>${city.description}</p>
+                <div class="attractions">
+                    <h3>Asosiy diqqatga sazovor joylar:</h3>
+                    ${city.attractions.map(attraction => 
+                        `<div class="attraction-item">${attraction}</div>`
+                    ).join('')}
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCities();
+            
+            const modal = document.getElementById('cityModal');
+            const closeBtn = document.querySelector('.close');
+            
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+         // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+         document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
